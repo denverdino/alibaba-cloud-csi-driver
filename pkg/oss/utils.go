@@ -385,7 +385,7 @@ func setTransmissionProtocol(originURL string) (URL string, modified bool) {
 	return "https://" + URL, true
 }
 
-// validateEndpoint will try to validate endpoint：
+// validateEndpoint will try to validate endpoint:
 //
 //	ban the bucket domain name like: bucket.oss-cn-beijing.aliyuncs.com
 func validateEndpoint(originURL, bucket string) error {

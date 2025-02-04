@@ -273,7 +273,7 @@ func GetDeviceByBdf(bdf string, enLog bool) (device string, err error) {
 
 	devices, err := filepath.Glob("/sys/block/*/device")
 	if err != nil {
-		return "", fmt.Errorf("Glob：%v", err)
+		return "", fmt.Errorf("Glob: %v", err)
 	}
 	for _, device := range devices {
 		targetPath, _ := os.Readlink(device)

@@ -99,7 +99,7 @@ func doMount(mounter mountutils.Interface, opt *Options, targetPath, volumeId, p
 		}
 		mountFstype = "cpfs"
 	default:
-		//NFS Mount(Capacdity/Performance Extreme Nas、Cpfs2.0, AliNas)
+		//NFS Mount(Capacdity/Performance Extreme Nas, Cpfs2.0, AliNas)
 		versStr := fmt.Sprintf("vers=%s", opt.Vers)
 		if !strings.Contains(opt.Options, versStr) {
 			combinedOptions = append(combinedOptions, versStr)

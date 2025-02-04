@@ -649,7 +649,7 @@ func (d *driver) GetPCIDeviceDriverType() string {
 	output, _ := exec.Command("lspci", "-s", d.deviceNumber, "-n").CombinedOutput()
 	klog.InfoS("GetDeviceDriverType: get driver type output", "deviceNumber", d.deviceNumber, "output", output)
 	// #define PCI_DEVICE_ID_VIRTIO_BLOCK 0x1001
-	// #define PCI_DEVICE_ID_ALIBABA_NVME 0×5004
+	// #define PCI_DEVICE_ID_ALIBABA_NVME 0x5004
 	if strings.HasSuffix(strings.TrimSpace(string(output)), "1001") {
 		return PCITypeVIRTIO
 	} else {
