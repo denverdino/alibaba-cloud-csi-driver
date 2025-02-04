@@ -88,7 +88,7 @@ func echoServer(c net.Conn) {
 	}
 
 	cmdStr := string(buf[0:nr])
-	// '\x00' is chosen as the delimiter because it is the only character that is not vaild in the command line arguments.
+	// '\x00' is chosen as the delimiter because it is the only character that is not valid in the command line arguments.
 	// The rationale is the same as `xargs -0`.
 	args := strings.Split(cmdStr, "\x00")
 	log.Printf("Server receive mount cmd: %q", args)
@@ -125,17 +125,17 @@ func echoServer(c net.Conn) {
 
 // systemd-run --scope -- mount -t alinas -o unas -o client_owner=podUID nfsServer:nfsPath mountPoint
 func checkRichNasClientCmd(cmd string) error {
-	parameteList := strings.Split(cmd, " ")
-	if len(parameteList) <= 2 {
-		return fmt.Errorf("Nas rich client mount command is format wrong:%+v", parameteList)
+	parameterList := strings.Split(cmd, " ")
+	if len(parameterList) <= 2 {
+		return fmt.Errorf("Nas rich client mount command is format wrong:%+v", parameterList)
 	}
-	mountPoint := parameteList[len(parameteList)-1]
+	mountPoint := parameterList[len(parameterList)-1]
 	if !IsFileExisting(mountPoint) {
 		return errors.New("Nas rich client option: mountpoint not exist " + mountPoint)
 	}
-	nfsInfo := strings.Split(parameteList[len(parameteList)-2], ":")
+	nfsInfo := strings.Split(parameterList[len(parameterList)-2], ":")
 	if len(nfsInfo) != 2 {
-		return errors.New("Nas rich client option: nfsServer:nfsPath is wrong format " + parameteList[len(parameteList)-2])
+		return errors.New("Nas rich client option: nfsServer:nfsPath is wrong format " + parameterList[len(parameterList)-2])
 	}
 	return nil
 }
@@ -160,18 +160,18 @@ func checkOssfsCmd(cmd string) error {
 		cmdParameters = strings.TrimSpace(cmdParameters)
 		cmdParameters = strings.Join(strings.Fields(cmdParameters), " ")
 
-		parameteList := strings.Split(cmdParameters, " ")
-		if len(parameteList) < 3 {
+		parameterList := strings.Split(cmdParameters, " ")
+		if len(parameterList) < 3 {
 			return errors.New("Oss Options: parameters less than 3: " + cmd)
 		}
-		if !IsFileExisting(parameteList[1]) {
-			return errors.New("Oss Options: mountpoint not exist " + parameteList[1])
+		if !IsFileExisting(parameterList[1]) {
+			return errors.New("Oss Options: mountpoint not exist " + parameterList[1])
 		}
-		if !strings.HasPrefix(parameteList[2], "-ourl=") {
-			return errors.New("Oss Options: url should start with -ourl: " + parameteList[2])
+		if !strings.HasPrefix(parameterList[2], "-ourl=") {
+			return errors.New("Oss Options: url should start with -ourl: " + parameterList[2])
 		}
 		oFlag := false
-		for index, value := range parameteList {
+		for index, value := range parameterList {
 			if index < 3 {
 				continue
 			}

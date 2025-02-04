@@ -336,7 +336,7 @@ func prepareMountInfos(req *csi.NodePublishVolumeRequest) ([]string, string) {
 	return options, fsType
 }
 
-// GetVolumeIDByDevice get volumeID by specific deivce name according to device meta-info
+// GetVolumeIDByDevice get volumeID by specific device name according to device meta-info
 func GetVolumeIDByDevice(device string) (volumeID string, err error) {
 	// get volume by serial number feature
 	deviceName := device
@@ -543,7 +543,7 @@ func getDiskVolumeOptions(req *csi.CreateVolumeRequest) (*diskVolumeArgs, error)
 		diskVolArgs.RegionID = GlobalConfigVar.Region
 	}
 
-	diskVolArgs.NodeSelected, _ = volOptions[NodeSchedueTag]
+	diskVolArgs.NodeSelected, _ = volOptions[NodeScheduleTag]
 
 	// fstype
 	// https://github.com/kubernetes-csi/external-provisioner/releases/tag/v1.0.1
@@ -845,8 +845,8 @@ func GetVolumeDeviceName(diskID string) (string, error) {
 	return device, err
 }
 
-// isPathAvailiable
-func isPathAvailiable(path string) error {
+// isPathAvailable
+func isPathAvailable(path string) error {
 	f, err := os.Open(path)
 	if err != nil {
 		return fmt.Errorf("Open Path (%s) with error: %v ", path, err)
@@ -1117,7 +1117,7 @@ func getAvailableDiskCountFromAnnotation(node *v1.Node) (int, error) {
 	}
 	var typeInfo InstanceTypeInfo
 	if err := json.Unmarshal([]byte(node.Annotations[instanceTypeInfoAnnotation]), &typeInfo); err != nil {
-		klog.Errorf("error unmarshaling instance type info annotation: %v", err)
+		klog.Errorf("error unmarshalling instance type info annotation: %v", err)
 		return 0, err
 	}
 	return typeInfo.DiskQuantity, nil

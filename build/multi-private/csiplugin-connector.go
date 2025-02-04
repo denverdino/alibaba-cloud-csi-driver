@@ -88,7 +88,7 @@ func echoServer(c net.Conn) {
 	}
 
 	cmdStr := string(buf[0:nr])
-	// '\x00' is chosen as the delimiter because it is the only character that is not vaild in the command line arguments.
+	// '\x00' is chosen as the delimiter because it is the only character that is not valid in the command line arguments.
 	// The rationale is the same as `xargs -0`.
 	args := strings.Split(cmdStr, "\x00")
 	log.Printf("Server receive mount cmd: %q", args)
@@ -137,18 +137,18 @@ func checkOssfsCmd(cmd string) error {
 		cmdParameters = strings.TrimSpace(cmdParameters)
 		cmdParameters = strings.Join(strings.Fields(cmdParameters), " ")
 
-		parameteList := strings.Split(cmdParameters, " ")
-		if len(parameteList) < 3 {
+		parameterList := strings.Split(cmdParameters, " ")
+		if len(parameterList) < 3 {
 			return errors.New("Oss Options: parameters less than 3: " + cmd)
 		}
-		if !IsFileExisting(parameteList[1]) {
-			return errors.New("Oss Options: mountpoint not exist " + parameteList[1])
+		if !IsFileExisting(parameterList[1]) {
+			return errors.New("Oss Options: mountpoint not exist " + parameterList[1])
 		}
-		if !strings.HasPrefix(parameteList[2], "-ourl=") {
-			return errors.New("Oss Options: url should start with -ourl: " + parameteList[2])
+		if !strings.HasPrefix(parameterList[2], "-ourl=") {
+			return errors.New("Oss Options: url should start with -ourl: " + parameterList[2])
 		}
 		oFlag := false
-		for index, value := range parameteList {
+		for index, value := range parameterList {
 			if index < 3 {
 				continue
 			}

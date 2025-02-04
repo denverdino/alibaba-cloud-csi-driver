@@ -485,6 +485,6 @@ func TestWriteSysfs(t *testing.T) {
 	err = m.WriteSysfs(dev, "some/not-exist-config", v)
 	assert.True(t, errors.Is(err, os.ErrNotExist), err)
 
-	err = m.WriteSysfs(dev, "../invaild/config", v)
+	err = m.WriteSysfs(dev, "../invalid/config", v)
 	assert.Error(t, err)
 }

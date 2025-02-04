@@ -24,7 +24,7 @@ if [[ "$1" = "--type=freeze" ]]; then
 elif [[ "$1" = "--type=unfreeze" ]]; then
   type=unfreeze
 else
-  echo `date`" input unsupport type: "$1 >> /var/log/alicloud/fsfreeze.log
+  echo `date`" input unsupported type: "$1 >> /var/log/alicloud/fsfreeze.log
   exit 1
 fi
 

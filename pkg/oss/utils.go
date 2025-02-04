@@ -45,7 +45,7 @@ const (
 	SigV4 SigVersion = "v4"
 )
 
-// VolumeAs determines the mounting tagret path in OSS
+// VolumeAs determines the mounting target path in OSS
 type VolumeAsType string
 
 const (
@@ -261,7 +261,7 @@ func checkRRSAParams(opt *Options) error {
 
 // getRRSAConfig get oidcProviderArn and roleArn
 func getRRSAConfig(opt *Options, m metadata.MetadataProvider) (rrsaCfg *mounter.RrsaConfig, err error) {
-	saName := fuseServieAccountName
+	saName := fuseServiceAccountName
 	if opt.ServiceAccountName != "" {
 		saName = opt.ServiceAccountName
 	}
@@ -302,17 +302,17 @@ func getSTSEndpoint(region string) string {
 func parseOtherOpts(otherOpts string) (mountOptions []string, err error) {
 	elements := strings.Fields(otherOpts)
 	accepting := false
-	for _, ele := range elements {
+	for _, element := range elements {
 		if accepting {
-			eles := strings.Split(ele, ",")
-			mountOptions = append(mountOptions, eles...)
+			strList := strings.Split(element, ",")
+			mountOptions = append(mountOptions, strList...)
 			accepting = false
 		} else {
-			if ele == "-o" {
+			if element == "-o" {
 				accepting = true
-			} else if strings.HasPrefix(ele, "-o") {
-				eles := strings.Split(strings.TrimPrefix(ele, "-o"), ",")
-				mountOptions = append(mountOptions, eles...)
+			} else if strings.HasPrefix(element, "-o") {
+				strList := strings.Split(strings.TrimPrefix(element, "-o"), ",")
+				mountOptions = append(mountOptions, strList...)
 			} else {
 				// missing -o
 				return nil, status.Errorf(codes.InvalidArgument, "invalid otherOpts: %q", otherOpts)

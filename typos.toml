@@ -1,0 +1,9 @@
+[default.extend-identifiers]
+1ded = "1ded"
+fo = "fo"
+ANDed = "ANDed"
+SerivceCode = "SerivceCode" # typo
+DISK_TAGED_BY_PLUGIN = "DISK_TAGED_BY_PLUGIN" # typo
+
+[files]
+extend-exclude = ["vendor/", "go.mod"]

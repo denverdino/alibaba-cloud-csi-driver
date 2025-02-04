@@ -310,11 +310,11 @@ func (p *nfsStatCollector) setNfsMetric(pvName string, pvcNamespace string, pvcN
 	}
 }
 
-func (p *nfsStatCollector) updateMap(lastPvNfsInfoMap *map[string]nfsInfo, jsonPaths []string, deriverName string) {
+func (p *nfsStatCollector) updateMap(lastPvNfsInfoMap *map[string]nfsInfo, jsonPaths []string, driverName string) {
 	thisPvNfsInfoMap := make(map[string]nfsInfo, 0)
 	for _, path := range jsonPaths {
 		//Get nfs pvName
-		pvName, _, err := getVolumeInfoByJSON(path, deriverName)
+		pvName, _, err := getVolumeInfoByJSON(path, driverName)
 		if err != nil {
 			if err != ErrUnexpectedVolumeType {
 				klog.Errorf("Get volume info by path %s is failed, err:%s", path, err)

@@ -1,13 +1,14 @@
 package cloud
 
 import (
+	"testing"
+
 	nas "github.com/alibabacloud-go/nas-20170626/v3/client"
 	"github.com/alibabacloud-go/tea/tea"
 	"github.com/golang/mock/gomock"
 	"github.com/kubernetes-sigs/alibaba-cloud-csi-driver/pkg/nas/interfaces"
 	"github.com/stretchr/testify/assert"
 	"go.uber.org/ratelimit"
-	"testing"
 )
 
 const nasV2Region = "cn-hangzhou"
@@ -247,7 +248,7 @@ func TestCreateAccessPointError(t *testing.T) {
 			}, &tea.SDKError{
 				Code:       tea.String("OperationDenied.AccessPointCountsExceeded\n"),
 				StatusCode: tea.Int(403),
-				Message:    tea.String("The maxium number of access point has reached its limits.\t"),
+				Message:    tea.String("The maximum number of access point has reached its limits.\t"),
 			})
 	})
 	_, err := client.CreateAccesspoint(&nas.CreateAccessPointRequest{})
